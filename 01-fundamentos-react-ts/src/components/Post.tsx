@@ -1,3 +1,4 @@
+import { Avatar } from './Avatar'
 import { Comment } from './Comment'
 import styles from './Post.module.css'
 
@@ -6,8 +7,7 @@ export function Post() {
     <article className={styles.post}>
       <header>
         <div className={styles.author}>
-          {/* eslint-disable-next-line jsx-a11y/alt-text */}
-          <img src="https://github.com/maiasb.png" />
+          <Avatar src="https://github.com/maiasb.png" />
 
           <div className={styles.authorInfo}>
             <strong>Caio Maia</strong>
