@@ -2,15 +2,33 @@ import { Avatar } from './Avatar'
 import { Comment } from './Comment'
 import styles from './Post.module.css'
 
-export function Post() {
+export interface Author {
+  avatarUrl: string
+  name: string
+  role: string
+}
+
+export interface linePostContent {
+  type: string
+  content: string
+}
+
+export interface PostProps {
+  id: number
+  author: Author
+  postContent: linePostContent[]
+  publishedAt: Date
+}
+
+export function Post({ id, author, postContent, publishedAt }: PostProps) {
   return (
     <article className={styles.post}>
       <header>
         <div className={styles.author}>
-          <Avatar src="https://github.com/maiasb.png" />
+          <Avatar src={author.avatarUrl} />
 
           <div className={styles.authorInfo}>
-            <strong>Caio Maia</strong>
+            <strong>{author.name}</strong>
             <span>Web Developer</span>
           </div>
         </div>
