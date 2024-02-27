@@ -24,6 +24,11 @@
   text-decoration: none;
 }
 
+.links {
+  display: flex;
+  gap:0.5rem;
+}
+
 .content a:hover {
   color: var(--green-300);
 }
@@ -93,7 +98,7 @@
   max-height: none
 }
 
-.commentForm button[type=submit] {
+.commentForm button {
   padding: 1rem 1.5rem;
   margin-top: 1rem;
   border-radius: 8px;
@@ -104,7 +109,7 @@
   transition: background-color 0.1s;
 }
 
-.commentForm button[type=submit]:hover {
+.commentForm button:hover {
   background: var(--green-300);
 }
 

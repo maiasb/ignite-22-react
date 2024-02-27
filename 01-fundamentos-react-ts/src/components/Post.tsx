@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { Avatar } from './Avatar'
 import { Comment } from './Comment'
 import styles from './Post.module.css'
@@ -9,7 +10,7 @@ export interface Author {
 }
 
 export interface linePostContent {
-  type: string
+  type: 'paragraph' | 'link'
   content: string
 }
 
@@ -20,7 +21,36 @@ export interface PostProps {
   publishedAt: Date
 }
 
-export function Post({ id, author, postContent, publishedAt }: PostProps) {
+export function Post({ author, postContent }: PostProps) {
+  const [comments, setComments] = useState<null | Comment[]>(null)
+  const [newComment, setNewComment] = useState('')
+  const paragraphs = postContent.filter((content) => {
+    return content.type === 'paragraph'
+  })
+  const links = postContent.filter((content) => {
+    return content.type === 'link'
+  })
+
+  function handleAddNewComment(newComment: string) {
+    setComments((state) => [
+      ...(state || []),
+      {
+        id: (comments && comments.length + 1) || 1,
+        content: newComment,
+      },
+    ])
+    setNewComment('')
+  }
+
+  function handleDeleteComment(commentId: number) {
+    setComments((state) => {
+      const updatedComments = (state || []).filter(
+        (comment) => comment.id !== commentId,
+      )
+      return updatedComments
+    })
+  }
+
   return (
     <article className={styles.post}>
       <header>
@@ -39,34 +69,45 @@ export function Post({ id, author, postContent, publishedAt }: PostProps) {
       </header>
 
       <div className={styles.content}>
-        <p>Fala galeraa 👋</p>
-        <p>
-          Acabei de subir mais um projeto no meu portifa. É um projeto que fiz
-          no NLW Return, evento da Rocketseat. O nome do projeto é DoctorCare 🚀
-        </p>
-        <p>
-          <a href="#">jane.design/doctorcare</a>
-        </p>
-        <p>
-          <a href="#">#novoprojeto</a> <a href="#">#nlw</a>{' '}
-          <a href="#">#rocketseat</a>
+        {paragraphs &&
+          paragraphs.map((paragraph, index) => (
+            <p key={index}>{paragraph.content}</p>
+          ))}
+        <p className={styles.links}>
+          {links &&
+            links.map((link, index) => (
+              <a key={index} href="#">
+                {link.content}
+              </a>
+            ))}
         </p>
       </div>
 
-      <form className={styles.commentForm}>
+      <div className={styles.commentForm}>
         <strong>Deixe seu feedback</strong>
 
-        <textarea placeholder="Deixe um comentário" />
+        <textarea
+          placeholder="Deixe um comentário"
+          value={newComment}
+          onChange={(e) => setNewComment(e.target.value)}
+        />
 
         <footer>
-          <button type="submit">Publicar</button>
+          <button onClick={() => handleAddNewComment(newComment)}>
+            Publicar
+          </button>
         </footer>
-      </form>
+      </div>
 
       <div className={styles.commentList}>
-        <Comment />
-        <Comment />
-        <Comment />
+        {comments &&
+          comments.map((comment, index) => (
+            <Comment
+              key={index}
+              comment={comment}
+              deleteComment={handleDeleteComment}
+            />
+          ))}
       </div>
     </article>
   )

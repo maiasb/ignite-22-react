@@ -23,11 +23,11 @@ const posts: PostProps[] = [
     },
     postContent: [
       {
-        type: 'paragrahp',
+        type: 'paragraph',
         content: 'Fala galeraa 👋',
       },
       {
-        type: 'paragrahp',
+        type: 'paragraph',
         content:
           'Acabei de subir mais um projeto no meu portifa. É um projeto que fiz no NLW Return, evento da Rocketseat. O nome do projeto é DoctorCare 🚀',
       },
@@ -47,11 +47,11 @@ const posts: PostProps[] = [
     },
     postContent: [
       {
-        type: 'paragrahp',
+        type: 'paragraph',
         content: 'Fala galeraa 👋',
       },
       {
-        type: 'paragrahp',
+        type: 'paragraph',
         content:
           'Acabei de subir mais um projeto no meu portifa. É um projeto que fiz no NLW Return, evento da Rocketseat. O nome do projeto é DoctorCare 🚀',
       },
@@ -71,17 +71,21 @@ const posts: PostProps[] = [
     },
     postContent: [
       {
-        type: 'paragrahp',
+        type: 'paragraph',
         content: 'Fala galeraa 👋',
       },
       {
-        type: 'paragrahp',
+        type: 'paragraph',
         content:
           'Acabei de subir mais um projeto no meu portifa. É um projeto que fiz no NLW Return, evento da Rocketseat. O nome do projeto é DoctorCare 🚀',
       },
       {
         type: 'link',
         content: 'jane.design/doctorcare',
+      },
+      {
+        type: 'link',
+        content: 'jane.design/uposts',
       },
     ],
     publishedAt: new Date('2023-11-23 20:00:00'),
