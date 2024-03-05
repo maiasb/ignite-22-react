@@ -39,13 +39,13 @@ export function Post({ author, publishedAt, postContent }: IPost) {
 
       <div className={styles.content}>
         {paragraphs &&
-          paragraphs.map((paragraph, index) => (
-            <p key={index}>{paragraph.content}</p>
+          paragraphs.map((paragraph) => (
+            <p key={paragraph.content}>{paragraph.content}</p>
           ))}
         <p className={styles.links}>
           {links &&
-            links.map((link, index) => (
-              <a key={index} href="#">
+            links.map((link) => (
+              <a key={link.content} href="#">
                 {link.content}
               </a>
             ))}
@@ -70,9 +70,9 @@ export function Post({ author, publishedAt, postContent }: IPost) {
 
       <div className={styles.commentList}>
         {comments &&
-          comments.map((comment, index) => (
+          comments.map((comment) => (
             <Comment
-              key={index}
+              key={comment.id}
               comment={comment}
               deleteComment={handleDeleteComment}
             />
