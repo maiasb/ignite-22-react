@@ -1,55 +1,21 @@
-import { useState } from 'react'
-import { format, formatDistanceToNow } from 'date-fns'
-import { pt } from 'date-fns/locale/pt'
+import { UsePost } from './usePost'
 import { Avatar } from '../Avatar'
 import { Comment } from '../Comment'
 import { IPost } from '../../models/Post'
-import { IComment } from '../../models/Comment'
 import styles from './index.module.css'
 
 export function Post({ author, publishedAt, postContent }: IPost) {
-  const [comments, setComments] = useState<null | IComment[]>(null)
-  const [newComment, setNewComment] = useState('')
-
-  const publishedDateFormatted = format(
-    publishedAt,
-    "d 'de' LLLL 'às' HH:mm'h'",
-    {
-      locale: pt,
-    },
-  )
-
-  const publishedDateRelativeToNow = formatDistanceToNow(publishedAt, {
-    locale: pt,
-    addSuffix: true,
-  })
-
-  const paragraphs = postContent.filter((content) => {
-    return content.type === 'paragraph'
-  })
-  const links = postContent.filter((content) => {
-    return content.type === 'link'
-  })
-
-  function handleAddNewComment(newComment: string) {
-    setComments((state) => [
-      ...(state || []),
-      {
-        id: (comments && comments.length + 1) || 1,
-        content: newComment,
-      },
-    ])
-    setNewComment('')
-  }
-
-  function handleDeleteComment(commentId: number) {
-    setComments((state) => {
-      const updatedComments = (state || []).filter(
-        (comment) => comment.id !== commentId,
-      )
-      return updatedComments
-    })
-  }
+  const {
+    publishedDateFormatted,
+    publishedDateRelativeToNow,
+    paragraphs,
+    links,
+    newComment,
+    comments,
+    setNewComment,
+    handleAddNewComment,
+    handleDeleteComment,
+  } = UsePost({ publishedAt, postContent })
 
   return (
     <article className={styles.post}>
