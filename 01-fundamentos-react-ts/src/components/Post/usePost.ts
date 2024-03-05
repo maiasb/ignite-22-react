@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import { format, formatDistanceToNow } from 'date-fns'
 import { pt } from 'date-fns/locale/pt'
+import { format, formatDistanceToNow } from 'date-fns'
 import { IComment } from '../../models/Comment'
 import { IPostContent } from '../../models/Post'
 
