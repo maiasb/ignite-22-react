@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import { Avatar } from './Avatar'
 import { Comment } from './Comment'
+import { format, formatDistanceToNow } from 'date-fns'
+import { pt } from 'date-fns/locale/pt'
 import styles from './Post.module.css'
 
 export interface Author {
@@ -21,9 +23,23 @@ export interface PostProps {
   publishedAt: Date
 }
 
-export function Post({ author, postContent }: PostProps) {
+export function Post({ author, publishedAt, postContent }: PostProps) {
   const [comments, setComments] = useState<null | Comment[]>(null)
   const [newComment, setNewComment] = useState('')
+
+  const publishedDateFormatted = format(
+    publishedAt,
+    "d 'de' LLLL 'às' HH:mm'h'",
+    {
+      locale: pt,
+    },
+  )
+
+  const publishedDateRelativeToNow = formatDistanceToNow(publishedAt, {
+    locale: pt,
+    addSuffix: true,
+  })
+
   const paragraphs = postContent.filter((content) => {
     return content.type === 'paragraph'
   })
@@ -59,12 +75,15 @@ export function Post({ author, postContent }: PostProps) {
 
           <div className={styles.authorInfo}>
             <strong>{author.name}</strong>
-            <span>Web Developer</span>
+            <span>{author.role}</span>
           </div>
         </div>
 
-        <time title="11 de Maio às 08:13h" dateTime="2022-05-11 08:13:34">
-          Publicado há 1h
+        <time
+          title={publishedDateFormatted}
+          dateTime={publishedAt.toISOString()}
+        >
+          {publishedDateRelativeToNow}
         </time>
       </header>
 
