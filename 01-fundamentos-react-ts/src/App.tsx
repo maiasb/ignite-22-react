@@ -1,17 +1,11 @@
-import { Author, Post, linePostContent } from './components/Post/index'
 import { Header } from './components/Header'
 import { Sidebar } from './components/Sidebar'
+import { Post } from './components/Post/index'
+import { IPost } from './models/Post'
 import styles from './App.module.css'
 import './global.css'
 
-interface PostProps {
-  id: number
-  author: Author
-  postContent: linePostContent[]
-  publishedAt: Date
-}
-
-const posts: PostProps[] = [
+const posts: IPost[] = [
   {
     id: 1,
     author: {

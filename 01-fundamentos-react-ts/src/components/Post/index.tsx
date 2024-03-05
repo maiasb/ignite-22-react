@@ -3,28 +3,12 @@ import { format, formatDistanceToNow } from 'date-fns'
 import { pt } from 'date-fns/locale/pt'
 import { Avatar } from '../Avatar'
 import { Comment } from '../Comment'
+import { IPost } from '../../models/Post'
+import { IComment } from '../../models/Comment'
 import styles from './index.module.css'
 
-export interface Author {
-  avatarUrl: string
-  name: string
-  role: string
-}
-
-export interface linePostContent {
-  type: 'paragraph' | 'link'
-  content: string
-}
-
-export interface PostProps {
-  id: number
-  author: Author
-  postContent: linePostContent[]
-  publishedAt: Date
-}
-
-export function Post({ author, publishedAt, postContent }: PostProps) {
-  const [comments, setComments] = useState<null | Comment[]>(null)
+export function Post({ author, publishedAt, postContent }: IPost) {
+  const [comments, setComments] = useState<null | IComment[]>(null)
   const [newComment, setNewComment] = useState('')
 
   const publishedDateFormatted = format(

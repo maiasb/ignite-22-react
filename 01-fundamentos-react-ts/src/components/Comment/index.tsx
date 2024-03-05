@@ -1,14 +1,10 @@
-import { ThumbsUp, Trash } from 'phosphor-react'
 import { Avatar } from '../Avatar'
+import { ThumbsUp, Trash } from 'phosphor-react'
+import { IComment } from '../../models/Comment'
 import styles from './index.module.css'
 
-export interface Comment {
-  id: number
-  content: string
-}
-
 interface CommentProps {
-  comment: Comment
+  comment: IComment
   deleteComment(commentId: number): void
 }
 
