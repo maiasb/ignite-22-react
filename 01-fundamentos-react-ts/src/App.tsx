@@ -1,9 +1,7 @@
+import { Author, Post, linePostContent } from './components/Post/index'
 import { Header } from './components/Header'
 import { Sidebar } from './components/Sidebar'
-import { Author, Post, linePostContent } from './components/Post'
-
 import styles from './App.module.css'
-
 import './global.css'
 
 interface PostProps {

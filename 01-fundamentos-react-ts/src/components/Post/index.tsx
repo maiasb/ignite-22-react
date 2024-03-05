@@ -1,9 +1,9 @@
 import { useState } from 'react'
-import { Avatar } from './Avatar'
-import { Comment } from './Comment'
 import { format, formatDistanceToNow } from 'date-fns'
 import { pt } from 'date-fns/locale/pt'
-import styles from './Post.module.css'
+import { Avatar } from '../Avatar'
+import { Comment } from '../Comment'
+import styles from './index.module.css'
 
 export interface Author {
   avatarUrl: string

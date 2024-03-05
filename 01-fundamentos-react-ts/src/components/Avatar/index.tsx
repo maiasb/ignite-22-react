@@ -1,4 +1,4 @@
-import styles from './Avatar.module.css'
+import styles from './index.module.css'
 
 interface AvatarProps {
   hasBorder?: boolean

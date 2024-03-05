@@ -1,6 +1,5 @@
-import styles from './Header.module.css'
-
-import igniteLogo from '../assets/ignite-logo.svg'
+import igniteLogo from '../../assets/ignite-logo.svg'
+import styles from './index.module.css'
 
 export function Header() {
   return (
